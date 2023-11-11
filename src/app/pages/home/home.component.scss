@@ -1,0 +1,18 @@
+main{
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    .flex{
+        display: flex;
+        gap: 1em;
+        align-items: center;     
+        width: 100%;   
+    }    
+    .space{
+        justify-content: space-between;
+    }
+    .wrap{
+        flex-wrap: wrap;
+    }
+}
+

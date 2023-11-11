@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core"
-import { AuthApiError, AuthError, Session, SignInWithPasswordCredentials, SupabaseClient, User, createClient } from "@supabase/supabase-js"
+import { AuthApiError, AuthError, SignInWithPasswordCredentials, SupabaseClient, User, createClient } from "@supabase/supabase-js"
 import { BehaviorSubject, Observable } from "rxjs"
 import { USER_STORAGE_KEY, environment } from "src/environments/environment"
 
-// type SupabaseResponse = User | Session | AuthApiError | null
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private supabaseClient: SupabaseClient

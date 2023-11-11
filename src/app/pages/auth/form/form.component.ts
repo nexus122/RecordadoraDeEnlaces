@@ -1,10 +1,10 @@
-import { Component,Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth/service/authService';
 import { ACTIONS } from '@shared/constants/constant';
 
-export interface OptionsForm{
+export interface OptionsForm {
   id: string;
   label: string;
 }
@@ -16,48 +16,47 @@ export interface OptionsForm{
 export class FormComponent implements OnInit {
   authForm!: FormGroup;
   SignIn = ACTIONS.signIn
-  @Input() options!:OptionsForm;
+  @Input() options!: OptionsForm;
   constructor(
     private readonly router: Router,
     private readonly authSvc: AuthService,
-    private readonly fb:FormBuilder) { }
+    private readonly fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.initForm();
   }
 
-  async onSubmit(): Promise<void>{
-    console.log("Save", this.authForm.value);
+  async onSubmit(): Promise<void> {
     const credentials: any = this.authForm.value;
     let actionToCall;
-    
-    if(this.options.id === ACTIONS.signIn) {
+
+    if (this.options.id === ACTIONS.signIn) {
       actionToCall = this.authSvc.signIn(credentials);
-    }else{
+    } else {
       actionToCall = this.authSvc.signUp(credentials);
     }
 
-    try{
+    try {
       const result = await actionToCall;
-      if(result.user.email){
+      console.log("Result: ", result);
+      if (result.user.email) {
         this.redirectUser();
-      }else{        
+      } else {
         console.log("Error");
-        
       }
-    } catch(error){
+    } catch (error) {
       console.log(error);
     }
     this.authSvc.signIn(this.authForm.value);
   }
 
-  private redirectUser(){
+  private redirectUser() {
     this.router.navigate(['/home'])
   }
 
-  private initForm():void{
+  private initForm(): void {
     this.authForm = this.fb.group({
-      email: ['',Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     })
   }

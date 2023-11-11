@@ -1,1 +1,33 @@
-<p>home works!</p>
+<main>
+    <h1>🔮 Recordadora de enlaces</h1>
+    <div class="card">
+        <img class="card-img-top" src="https://pa1.aminoapps.com/6501/1ee81cb0d11e8c0484a898916343d50f7992d608_hq.gif"
+            alt="Card image cap">
+        <div class="card-body">
+            <form [formGroup]="recordadoraForm" (ngSubmit)="onSubmit()" class="flex">
+                <input type="text" class="form-control" formControlName="name" name="name" placeholder="Nombre" id="name">
+                <input type="text" class="form-control" formControlName="link" name="link" placeholder="Enlace" id="link">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Separación -->
+
+    <div class="card">
+        <div class="card-body">
+            <h2>
+                Listado de enlaces
+            </h2>
+            <div class="flex wrap space">
+                <span class="flex space" *ngFor="let enlace of recordadoraList | async">
+                    <span class="flex">
+                        🔗 <a [href]="enlace.link">{{enlace.name}}</a>
+                        <span>{{enlace.created_at | date}}</span>
+                    </span>
+                    <button class="btn btn-danger" (click)="deleteLink(enlace.id)"><i class="fa-solid fa-trash"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</main>
