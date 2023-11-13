@@ -11,7 +11,6 @@ export class ListComponent {
   @Input() recordadoraList!: any;
   searchTerm: string = "";
   constructor(
-    private supabaseClient: supabaseDataBaseService,
     private listService: listService
     ) { }
 
@@ -20,8 +19,8 @@ export class ListComponent {
   }
 
   async search() {
-    // await this.updateList();
-    this.recordadoraList = await this.recordadoraList.filter((link: any) => link.name.includes(this.searchTerm));
+    if(this.searchTerm == "") this.recordadoraList = this.listService.getList();
+    else this.recordadoraList = await this.recordadoraList.filter((link: any) => link.name.includes(this.searchTerm));
   }
 
   async orderAlphabetical() {

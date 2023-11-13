@@ -8,11 +8,11 @@
                 cada enlace un nombre único. Además, mantenemos un registro de la fecha de creación para que nunca
                 pierdas de vista tus tesoros digitales.
             </p>
-            <span *ngIf="!loged">
+            <span *ngIf="(user$ | async) === null">
                 <button routerLink="/sign-up" class="btn btn-primary btn-lg" type="button">Registrate y empieza
                     ahora!</button>
             </span>
-            <span *ngIf="loged">
+            <span *ngIf="(user$ | async) !== null">
                 <button routerLink="/remember" class="btn btn-primary btn-lg" type="button">Ir a recordar!</button>
             </span>
         </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth/service/authService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ user$ = this.authSvc.user$;
 
   async onLogout():Promise<void>{
     try{
-      await this.authSvc.signOut()
+      await this.authSvc.signOut();
     }catch(error){
       console.log(error);
     }
