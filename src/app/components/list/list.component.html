@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-body">
+        <nav class="flex space">
+            <h2>
+                Listado de enlaces
+            </h2>
+            <span>
+                <button (click)="orderAlphabetical()" class="btn btn-secondary"><i class="fa-solid fa-arrow-down-a-z"></i></button>
+                <button (click)="orderDate()" class="btn btn-secondary"><i class="fa-regular fa-calendar"></i></button>
+            </span>
+        </nav>
+
+        <div class="input-group mb-3">                
+            <input [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="🔎 Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button (click)="search()" class="btn btn-primary" type="button">Search</button>
+            </div>
+          </div>
+
+        <div class="flex wrap space">
+            <span [id]="enlace.id" class="flex space" *ngFor="let enlace of recordadoraList">
+                <span class="flex">
+                    <span>{{enlace.created_at | date: 'dd/MM/yyyy HH:mm:ss'}}</span>
+                    <a [href]="enlace.link" target="_blank">{{enlace.name}}</a>                        
+                </span>
+                <button class="btn btn-danger" (click)="deleteLink(enlace.id)"><i class="fa-solid fa-trash"></i></button>
+            </span>
+        </div>
+    </div>
+</div>

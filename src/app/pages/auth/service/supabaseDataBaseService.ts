@@ -4,7 +4,7 @@ import { environment } from "src/environments/environment"
 import { LocalStorageService } from "./localStorageService";
 
 @Injectable({ providedIn: 'root' })
-export class rememberService {
+export class supabaseDataBaseService {
     private supabaseClient: SupabaseClient;
     private userID: string;
     constructor(private localStorageService: LocalStorageService) {
@@ -12,7 +12,7 @@ export class rememberService {
         this.userID = localStorageService.getUserID();
     }
 
-    async addToSupabase(values: any) {
+    async addData(values: any) {
         if (!this.userID) return;
         const { name, link } = values;
         const insertData = {
@@ -28,15 +28,14 @@ export class rememberService {
         }
     }
 
-    async readToSupabase(): Promise<any> {
+    async readData(): Promise<any> {
         if (!this.localStorageService.getUserID()) return;
         return await this.supabaseClient.from('enlaces').select('*').eq('userId', this.userID).then((response) => {
-            console.log(response.data)
             return response.data ?? [];
         })
     }
 
-    async deleteToSupabase(id: string) {
+    async deleteData(id: string) {
         return await this.supabaseClient
             .from('enlaces')
             .delete()

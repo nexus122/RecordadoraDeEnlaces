@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+.flex {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    width: 100%;
+}
+
+.space {
+    justify-content: space-between;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}

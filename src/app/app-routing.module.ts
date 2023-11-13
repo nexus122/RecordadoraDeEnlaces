@@ -14,6 +14,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/sign-up/sign-up.module').then(m => m.SignUpModule),
     canActivate: [AuthGuard],
   },
+  { path: 'remember', loadChildren: () => import('./pages/remember/remember.module').then(m => m.RememberModule) },
   {path:'**', redirectTo:'/home', pathMatch: "full"},
 ];
 

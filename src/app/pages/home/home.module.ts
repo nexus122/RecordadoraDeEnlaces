@@ -6,16 +6,17 @@ import { HomeComponent } from './home.component';
 
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormsModule  } from '@angular/forms';
 @NgModule({
   declarations: [
-    HomeComponent
+    HomeComponent,    
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule 
   ]
 })
 export class HomeModule { }

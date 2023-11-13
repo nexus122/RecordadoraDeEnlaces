@@ -1,0 +1,11 @@
+<div class="card text-bg-light mb-3">
+    <div class="card-body">
+        <h1>🔮 Recordadora de enlaces</h1>
+        <p>Todo lo que no apuntes sera olvidado</p>
+        <form [formGroup]="recordadoraForm" (ngSubmit)="onSubmit()" class="flex">
+            <input type="text" class="form-control" formControlName="name" name="name" placeholder="Nombre" id="name">
+            <input type="text" class="form-control" formControlName="link" name="link" placeholder="Enlace" id="link">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+        </form>
+    </div>
+</div>
