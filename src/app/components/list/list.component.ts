@@ -1,34 +1,69 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { listService } from '@auth/service/listService';
-import { supabaseDataBaseService } from '@auth/service/supabaseDataBaseService';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent {
-  @Input() recordadoraList!: any;
-  searchTerm: string = "";
-  constructor(
-    private listService: listService
-    ) { }
+export class ListComponent implements OnInit, OnChanges {
+  
+  @Input() recordadoraList!: any[];
+  manipulatedList: any[] = [];
+
+  searchTerm: string = "";  
+  isAlphabeticalAscending: boolean = true;
+  isDateAscending: boolean = true;
+
+  constructor(private listService: listService) { }
+
+  ngOnInit() {
+    this.updateManipulatedList();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['recordadoraList']) {
+      this.updateManipulatedList();
+    }
+  }
 
   async deleteLink(linkID: any) {
     this.listService.deleteLink(linkID);
   }
 
-  async search() {
-    if(this.searchTerm == "") this.recordadoraList = this.listService.getList();
-    else this.recordadoraList = await this.recordadoraList.filter((link: any) => link.name.includes(this.searchTerm));
+  search() {
+    if (this.searchTerm === "") {
+      this.updateManipulatedList();
+    } else {
+      this.manipulatedList = this.recordadoraList.filter((link: any) => link.name.includes(this.searchTerm));
+    }
   }
 
-  async orderAlphabetical() {
-    this.recordadoraList = await this.recordadoraList.sort((a: any, b: any) => a.name.localeCompare(b.name));
+  orderAlphabetical() {
+    this.isAlphabeticalAscending = !this.isAlphabeticalAscending;
+    this.manipulatedList = [...this.recordadoraList].sort((a: any, b: any) => {
+      if (this.isAlphabeticalAscending) {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
   }
 
-  async orderDate() {
-    this.recordadoraList = await this.recordadoraList.sort((a: any, b: any) => a.created_at.localeCompare(b.created_at));
+  orderDate() {
+    this.isDateAscending = !this.isDateAscending;
+    this.manipulatedList = [...this.recordadoraList].sort((a: any, b: any) => {
+      if (this.isDateAscending) {
+        return a.created_at.localeCompare(b.created_at);
+      } else {
+        return b.created_at.localeCompare(a.created_at);
+      }
+    });
   }
 
+  private updateManipulatedList() {
+    if (this.recordadoraList) {
+      this.manipulatedList = [...this.recordadoraList].sort((a: any, b: any) => b.created_at.localeCompare(a.created_at));;
+    }
+  }
 }

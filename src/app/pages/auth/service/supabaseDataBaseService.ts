@@ -12,9 +12,8 @@ export class supabaseDataBaseService {
         this.userID = localStorageService.getUserID();
     }
 
-    async addData(values: any) {
+    async addData({name, link}:{name:string, link: string}) {
         if (!this.userID) return;
-        const { name, link } = values;
         const insertData = {
             name: name,
             link: link,
@@ -28,8 +27,8 @@ export class supabaseDataBaseService {
         }
     }
 
-    async readData(): Promise<any> {
-        if (!this.localStorageService.getUserID()) return;
+    async readData(): Promise<any> {        
+        if (!this.localStorageService.getUserID()) return;        
         return await this.supabaseClient.from('enlaces').select('*').eq('userId', this.userID).then((response) => {
             return response.data ?? [];
         })

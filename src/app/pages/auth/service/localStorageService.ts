@@ -10,7 +10,7 @@ export class LocalStorageService {
 
     getUserID():string{        
         let parseUser:any = JSON.parse(this.user);
-        return parseUser.user.id
+        return parseUser?.user?.id ?? "";
     }
 
 }

@@ -5,23 +5,28 @@
                 Listado de enlaces
             </h2>
             <span>
-                <button (click)="orderAlphabetical()" class="btn btn-secondary m-1"><i
-                        class="fa-solid fa-arrow-down-a-z"></i></button>
+                <button (click)="orderAlphabetical()" class="btn btn-secondary m-1">
+                    <span *ngIf="isAlphabeticalAscending">
+                        <i class="fa-solid fa-arrow-down-a-z"></i>
+                    </span>
+                    <span *ngIf="!isAlphabeticalAscending">
+                        <i class="fa-solid fa-arrow-down-z-a"></i>
+                    </span>
+                    
+                </button>
                 <button (click)="orderDate()" class="btn btn-secondary"><i class="fa-regular fa-calendar"></i></button>
             </span>
         </nav>
+
         <div class="input-group mb-3 mt-1">
-            <input [(ngModel)]="searchTerm" type="text" class="form-control" placeholder="🔎 Search"
+            <input [(ngModel)]="searchTerm" (ngModelChange)="search()" type="text" class="form-control" placeholder="🔎 Search"
                 aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button (click)="search()" class="btn btn-primary" type="button">Search</button>
-            </div>
         </div>
 
         <hr>
 
         <div class="flex wrap space">
-            <span [id]="enlace.id" class="flex space" *ngFor="let enlace of recordadoraList">
+            <span [id]="enlace.id" class="flex space" *ngFor="let enlace of manipulatedList">
                 <span class="flex">
                     <span>{{enlace.created_at | date: 'dd/MM/yyyy HH:mm:ss'}}</span>
                     <a [href]="enlace.link" target="_blank">{{enlace.name}}</a>
