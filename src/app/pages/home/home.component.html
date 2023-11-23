@@ -1,12 +1,11 @@
 <div>
     <div class="p-5 mb-4 bg-body-tertiary rounded-3">
         <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">🔮 Explora la Recordadora de Enlaces</h1>
+            <h1 class="display-5 fw-bold">🔮 <span class="gradient-text">Explora la Recordadora de Enlaces</span></h1>
             <p class="col-md-8 fs-4">
-                ¿Alguna vez has encontrado algo genial en la web, pero luego te has olvidado de dónde estaba? Con
-                nuestra Recordadora de Enlaces, eso no volverá a suceder. Guarda tus descubrimientos favoritos y dale a
-                cada enlace un nombre único. Además, mantenemos un registro de la fecha de creación para que nunca
-                pierdas de vista tus tesoros digitales.
+                <b>¿Alguna vez encontraste algo genial en la web y olvidaste dónde estaba?</b> Con nuestra Recordadora de
+                Enlaces, nunca más perderás tus tesoros digitales. Guarda descubrimientos, asigna nombres únicos y
+                mantenemos un registro.
             </p>
             <span *ngIf="(user$ | async) === null">
                 <button routerLink="/sign-up" class="btn btn-primary btn-lg" type="button">Registrate y empieza

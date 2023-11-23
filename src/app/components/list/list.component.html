@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <nav class="flex space mt-1">
-            <h2>
+            <h2 class="gradient-text">
                 Listado de enlaces
             </h2>
             <span>
@@ -26,9 +26,9 @@
         <hr>
 
         <div class="flex wrap space">
-            <span [id]="enlace.id" class="flex space" *ngFor="let enlace of manipulatedList">
+            <span [id]="enlace.id" class="flex space border-bottom p-1" *ngFor="let enlace of manipulatedList">
                 <span class="flex">
-                    <span>{{enlace.created_at | date: 'dd/MM/yyyy HH:mm:ss'}}</span>
+                    <!--<span>{{enlace.created_at | date: 'dd/MM/YY HH:mm'}}</span>-->
                     <a [href]="enlace.link" target="_blank">{{enlace.name}}</a>
                 </span>
                 <button class="btn btn-danger" (click)="deleteLink(enlace.id)"><i
