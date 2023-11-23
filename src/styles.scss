@@ -1,9 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+//$primary-color: #ff0000; // Reemplaza #ff0000 con tu color personalizado
+
+.custom-class {
+  color: #007bff;
+}
+
 .flex {
     display: flex;
     gap: 1em;
     align-items: center;
-    width: 100%;
+    width: 100%;    
 }
 
 .space {
@@ -12,4 +17,37 @@
 
 .wrap {
     flex-wrap: wrap;
+}
+
+body {
+    background: radial-gradient(circle at center, transparent 10%, transparent 0%, #f2f2f2 90%);
+    min-height: 100vh;
+}
+
+html {
+    background:
+        linear-gradient(-90deg, rgba(0,0,0,.05) 2px, transparent 2px),
+        linear-gradient(rgba(0,0,0,.05) 2px, transparent 2px), 
+        linear-gradient(-90deg, rgba(0, 0, 0, .04) 2px, transparent 2px),
+        linear-gradient(rgba(0,0,0,.04) 2px, transparent 2px),
+        linear-gradient(transparent 6px, #f2f2f2 6px, #f2f2f2 156px, transparent 156px),
+        linear-gradient(-90deg, #aaa 2px, transparent 2px),
+        linear-gradient(-90deg, transparent 6px, #f2f2f2 6px, #f2f2f2 156px, transparent 156px),
+        linear-gradient(#aaa 2px, transparent 2px),
+        #f2f2f2;        
+    background-size:
+        8px 8px,
+        8px 8px,
+        160px 160px,
+        160px 160px,
+        160px 160px,
+        160px 160px,
+        160px 160px,
+        160px 160px;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #9333ea, #db2777);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
