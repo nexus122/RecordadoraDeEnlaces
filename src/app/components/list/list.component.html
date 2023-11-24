@@ -12,15 +12,15 @@
                     <span *ngIf="!isAlphabeticalAscending">
                         <i class="fa-solid fa-arrow-down-z-a"></i>
                     </span>
-                    
+
                 </button>
                 <button (click)="orderDate()" class="btn btn-secondary"><i class="fa-regular fa-calendar"></i></button>
             </span>
         </nav>
 
         <div class="input-group mb-3 mt-1">
-            <input [(ngModel)]="searchTerm" (ngModelChange)="search()" type="text" class="form-control" placeholder="🔎 Search"
-                aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <input [(ngModel)]="searchTerm" (ngModelChange)="search()" type="text" class="form-control"
+                placeholder="🔎 Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
         </div>
 
         <hr>

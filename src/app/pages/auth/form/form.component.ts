@@ -38,7 +38,6 @@ export class FormComponent implements OnInit {
 
     try {
       const result = await actionToCall;
-      console.log("Result: ", result);
       if (result.user.email) {
         this.redirectUser();
       } else {
