@@ -12,11 +12,12 @@ export class supabaseDataBaseService {
         this.userID = localStorageService.getUserID();
     }
 
-    async addData({name, link}:{name:string, link: string}) {
+    async addData({name, link, type}:{name:string, link: string, type: string}) {
         if (!this.userID) return;
         const insertData = {
             name: name,
             link: link,
+            type: type,
             userId: this.userID
         }
         const { data, error } = await this.supabaseClient.from('enlaces').insert(insertData);

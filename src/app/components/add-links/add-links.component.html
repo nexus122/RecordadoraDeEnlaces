@@ -4,7 +4,9 @@
         <form [formGroup]="recordadoraForm" (ngSubmit)="onSubmit()" class="flex">
             <input type="text" class="form-control" formControlName="name" name="name" placeholder="Nombre" id="name">
             <input type="text" class="form-control" formControlName="link" name="link" placeholder="Enlace" id="link">
-            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+            <input type="text" class="form-control" formControlName="type" name="type" placeholder="Tipo" id="type">
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>            
         </form>
+        <div *ngIf="formErrors" class="alert alert-danger mt-1">Rellena nombre y enlace para crear un recuerdo</div>
     </div>
 </div>

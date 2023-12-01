@@ -35,7 +35,7 @@ export class ListComponent implements OnInit, OnChanges {
     if (this.searchTerm === "") {
       this.updateManipulatedList();
     } else {
-      this.manipulatedList = this.recordadoraList.filter((link: any) => link.name.includes(this.searchTerm));
+      this.manipulatedList = this.recordadoraList.filter((link: any) => link.name.toLowerCase().includes(this.searchTerm.toLowerCase()) || link.type.toLowerCase().includes(this.searchTerm.toLowerCase()));
     }
   }
 

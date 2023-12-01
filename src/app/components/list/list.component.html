@@ -28,8 +28,9 @@
         <div class="flex wrap space">
             <span [id]="enlace.id" class="flex space border-bottom p-1" *ngFor="let enlace of manipulatedList">
                 <span class="flex">
-                    <!--<span>{{enlace.created_at | date: 'dd/MM/YY HH:mm'}}</span>-->
+                    <span>{{enlace.created_at | date: 'dd/MM/YY HH:mm'}}</span>
                     <a [href]="enlace.link" target="_blank">{{enlace.name}}</a>
+                    <span class="badge bg-secondary">{{enlace.type}}</span>
                 </span>
                 <button class="btn btn-danger" (click)="deleteLink(enlace.id)"><i
                         class="fa-solid fa-trash"></i></button>

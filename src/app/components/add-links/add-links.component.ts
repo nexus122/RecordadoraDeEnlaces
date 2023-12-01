@@ -13,22 +13,29 @@ export class AddLinksComponent implements OnInit {
   constructor(private readonly fb: FormBuilder,
     private readonly supabaseClient: supabaseDataBaseService,
     private readonly listService:listService) { }
+    public formErrors = false;
 
   ngOnInit(): void {
     this.initForm();
   }
 
   async onSubmit(): Promise<void> {
-    const value = this.recordadoraForm.value
-    await this.supabaseClient.addData(value);
-    this.initForm();
-    this.listService.updateList();
+    if (this.recordadoraForm.valid) {
+      const value = this.recordadoraForm.value;
+      await this.supabaseClient.addData(value);
+      this.initForm();
+      this.listService.updateList();
+      this.formErrors = false;
+    } else {
+      this.formErrors = true;
+    }
   }
 
   private initForm(): void {
     this.recordadoraForm = this.fb.group({
       name: ['', Validators.required],
-      link: ['', Validators.required]
+      link: ['', Validators.required],
+      type: [''],
     })
   }
 
